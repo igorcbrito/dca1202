@@ -43,8 +43,7 @@ int main()
     printf("\n");
 
 
-
-
+    free(p);
     return 0;
 }
 
