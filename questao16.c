@@ -1,9 +1,9 @@
-// Questão 14
+// Questão 16
 
 #include <stdio.h>
 #include <stdlib.h>
 
-void crescente(float* vetor, int n);
+int comparaCrescente(const void * a, const void * b); // protótipo da função de comparação
 
 int main()
 {
@@ -33,7 +33,8 @@ int main()
     }
 
     printf("\n\nOrdenando...\n\n");
-    crescente(p,n);
+
+    qsort(p,n,sizeof (float),comparaCrescente);
 
     printf("Sequencia ordenada: ");
 
@@ -49,18 +50,13 @@ int main()
     return 0;
 }
 
-void crescente(float* vetor, int n){
+int comparaCrescente(const void * a, const void * b){ //função de comparação
+    if (*(int*)a == *(int*)b)
+            return 0;
+    else
+        if ((*(int*)a - *(int*)b) < 0)
+            return -1; // se 'a' - 'b' for menor que 0, 'a' é menor que 'b' e deve vir antes de 'b'
+        else
+            return 1; // se 'a' - 'b' for maior que 0, 'a' é maior que 'b' e deve vir depois de 'b'
 
-    int i, j;
-    float aux;
-
-    for(i=0; i<n; i++){
-        for(j=i+1; j<n; j++){
-            if(vetor[i]>vetor[j]){
-                aux = vetor[i];
-                vetor[i] = vetor[j];
-                vetor[j] = aux;
-            }
-        }
-    }
 }
